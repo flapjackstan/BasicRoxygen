@@ -1,0 +1,61 @@
+# Various functions to access census variables and use them in
+# in various analyses
+#
+# Todo:
+#   * Get URL and Bullets to show up
+#   * Create file to load this package
+#   * determine best way to look at what variables to grab
+#   * determine best way to get census yearly var (get_acs or get_estimates)
+#
+# Google Python Style Guide:
+#   http://google.github.io/styleguide/pyguide.html
+
+
+#' @title
+#' Get date for most recent day of the week
+#'
+#' @description
+#' This function gets the most recent date for the day of the week.
+#' This can be useful in these types of contexts... :
+#'
+#' @section <A Custom Section>:
+#' Text accompanying the custom section.
+#'
+#' \href{https://stuff.mit.edu/afs/athena/software/r/current/RStudio/resources/roxygen_help.html}{Doc Guide}
+#' List
+#' \itemize{* `map()` returns a list or a data frame.
+#'
+#' * `map_lgl()`, `map_int()`, `map_dbl()` and `map_chr()` return
+#'     vectors of the corresponding type (or die trying).
+#'
+#' * `map_dfr()` and `map_dfc()` return data frames created by row-binding
+#'     and column-binding respectively. They require dplyr to be installed.
+#' }
+#'
+#' @param day character string in format of "Monday", "Tuesday", etc.
+#'
+#' @return date object
+#' @export
+#'
+#' @examples
+#' get_most_recent_date("Monday")
+
+get_most_recent_date <- function(day) {
+  dates <- seq((Sys.Date()-7),(Sys.Date()-1), by="days")
+  thedate <- dates[lubridate::wday(dates,label=T)==day]
+  return(thedate)
+}
+
+#' Add together two numbers
+#'
+#' @param x A number
+#' @param y A number
+#' @return The sum of \code{x} and \code{y}
+#' @examples
+#' add(1, 1)
+#' add(10, 1)
+
+add <- function(x, y) {
+  sum <- x + y
+  return(sum)
+}
